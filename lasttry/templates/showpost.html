@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card bg-dark">
+    <div class="card-title">
+        <p>Author: {{fm.username}}</p>
+        <a href= {%if fm.file %}"{{fm.file.url}}"{%endif%}>{{fm.title}}</a>
+    </div>
+    {% if c != None %}
+    {%for comment_ in c%}
+        {% include 'comments.html' with comment_=comment_%}
+    {%endfor%}
+    {%endif%}
+</div>
+<form method="POST" action="/showpost/?id={{id}}" enctype="multipart/form-data">{%csrf_token%}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-dark">Comment</button>
+</form>
+{% endblock %}

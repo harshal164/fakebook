@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{{username}}
+{% for object in q %}
+<style>
+        .card-body{
+          background-color:#282726;
+          color: aliceblue;
+        }
+          </style>
+<div class="card">
+    <div class="card-body">
+        <p>Author: {{object.username}}</p>
+        <a href= {%if object.file %}"/showpost/?id={{object.id}}"{%endif%}>{{object.title}}</a>
+        <small><cite style="font-size: x-small;">{{object.timestamp}}</cite></small>
+    </div>
+</div>
+{% endfor %}
+<br/>
+<a class="btn btn-outline-light" href='/dashboard/?f={{x|add:"-10"}}'>Previous</a>
+<a class="btn btn-outline-light" href='/dashboard/?f={{x|add:"10"}}'>Next</a>
+{% endblock %}

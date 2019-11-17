@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+motherfuka!!
+{% if not user.is_authenticated %}
+Hello
+{% endif %}
+{% for a in week %}
+ <li>{{ a }}</li>
+{% endfor %}
+{% endblock %}
+{% block t %}
+Hello fucka!
+{% endblock %}

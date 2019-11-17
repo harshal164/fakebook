@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% for a in object %}
+    <a href="/getuser_details/{{a.username}}">{{a.name}}</a>
+{% endfor %}
+{% endblock %}

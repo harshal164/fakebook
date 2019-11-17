@@ -1,0 +1,11 @@
+
+
+<div class="card">
+    <a href="/getuser_details/{{object.username}}">
+    <div class="card-body">
+        <h5 class="card-title">{{object.name}}</h5>
+        <p class="card-text">{{object.details|linebreaks|truncatewords:30}}</p>
+        <img src= {%if object.photo %}"{{object.photo.url}}"{%endif%} style='border-radius:50%;overflow:hidden;width:200px;height:200px;' class='img-thumbnail'/>
+    </div>
+    </a>
+</div>

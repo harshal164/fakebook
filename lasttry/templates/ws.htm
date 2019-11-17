@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block content %}
+		<div class="form-inline">
+		<input type = "text" id = "txt" class="form-control">
+		<input type = "button" id = "btn" class="btn btn-warning" value = "send" disabled>
+		<!--input type = "button" id = "lgt" value = "disconnect"-->
+		</div>
+		<div id="cb"></div>
+		<script>
+			var ws = new WebSocket("ws://localhost:8765");
+
+			var b = document.getElementById("btn");
+
+			ws.onopen = function(e){b.disabled = false;}
+			
+			var send = function(){
+				let txt = document.getElementById("txt").value;
+				document.getElementById("txt").value = "";
+				ws.send("{{username}}: "+txt);
+			};
+
+			b.addEventListener("click",send);
+
+			ws.onmessage = function(e){
+				let cb = document.getElementById("cb");
+				cb.innerHTML = cb.innerHTML+'<br>'+e.data;
+			};
+
+			ws.onclose = function(e){b.disabled = true;};
+
+			document.getElementById("lgt").addEventListener("click",(function(){ws.close(1000,"Done")}));
+		</script>
+	{%endblock%}

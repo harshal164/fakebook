@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{{username}}
+{% for object in q %}
+<style>
+        .card-body{
+          background-color:#282726;
+          color: aliceblue;
+        }
+          </style>
+<div class="card">
+    <div class="card-body">
+        <p>Author: {{object.username}}</p>
+        <a href= {%if object.file %}"/showpost/?id={{object.id}}"{%endif%}>{{object.title}}</a>
+        <small><cite style="font-size: x-small;">{{object.timestamp}}</cite></small>
+    </div>
+</div>
+{% endfor %}
+<br/>
+<a class="btn btn-outline-light" href='/dashboard/?f={{x|add:"-10"}}'>Previous</a>
+<a class="btn btn-outline-light" href='/dashboard/?f={{x|add:"10"}}'>Next</a>
+<br/>
+<br/>
+<hr style="border-color:white; border-width:3px"/>
+<h3 class="btn btn-outline-light" style="font-size:1.2em;">Upload files:</h3>
+<form class="form-group" method="POST" action="." enctype="multipart/form-data">{%csrf_token%}
+    {{form.as_p}}
+    <button class="btn btn-dark" type="submit">Upload</button>
+</form>
+{% endblock %}

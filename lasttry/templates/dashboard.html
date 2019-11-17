@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card-group">
+{% for object in q %}
+
+{%  include 'inline-list.html' with object=object%}
+
+
+<!--a href="/getuser_details/{{object.name}}">{{object.name}}</a><br-->
+<!--h1>{{object.username}}</h1>
+<h2>{{object.details}}</h2>
+<h3>{{object.qual}}</h3-->
+{% endfor %}
+    </div>
+{% endblock %}
